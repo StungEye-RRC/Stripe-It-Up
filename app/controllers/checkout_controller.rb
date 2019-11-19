@@ -1,10 +1,9 @@
+# frozen_string_literal: true
+
 class CheckoutController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
-    Stripe.api_key = 'secret_key_goes_here'
-
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [
@@ -28,7 +27,12 @@ class CheckoutController < ApplicationController
     )
 
     respond_to do |format|
-      format.js   # just renders messages/create.js.erb
+      format.js # just renders messages/create.js.erb
     end
+  end
+
+  def success
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
   end
 end

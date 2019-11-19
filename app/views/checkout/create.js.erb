@@ -1,4 +1,4 @@
-var stripe = Stripe('pk_test_mR0r9a72ADztwUSxDZ69HlWn00AIvUXtrZ');
+var stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>');
 
 stripe.redirectToCheckout({
   // Make the id field from the Checkout Session creation API response
