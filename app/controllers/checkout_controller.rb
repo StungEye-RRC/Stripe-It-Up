@@ -4,6 +4,7 @@ class CheckoutController < ApplicationController
   def new; end
 
   def create
+    base_url = "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [
@@ -22,8 +23,8 @@ class CheckoutController < ApplicationController
           quantity: 1
         }
       ],
-      success_url: 'http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost/cancel'
+      success_url: base_url + '/success?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: base_url + '/cancel'
     )
 
     respond_to do |format|
