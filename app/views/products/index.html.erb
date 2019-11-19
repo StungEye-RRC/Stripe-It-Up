@@ -1,0 +1,8 @@
+<h1>All Products</h1>
+
+<% @products.each do |product| %>
+  <h3><%= product.name %></h3>
+  <p>Price: <%= number_to_currency product.price_cents / 100.0 %></p>
+  <p><%= product.description %></p>
+  <p><%= image_tag product.image.variant(resize_to_limit: [100, 100]).processed  %></p>
+<% end %>
