@@ -1,6 +1,7 @@
 <h1>Success</h1>
 
-<%= debug params %>
+<p>We have received your payement of <%= number_to_currency @payment_intent.amount_received / 100.0 %>.</p>
+<p>The status of your payment is <%= @payment_intent.status %>.</p>
 
 <%= debug @session %>
 
