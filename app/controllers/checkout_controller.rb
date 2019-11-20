@@ -18,6 +18,20 @@ class CheckoutController < ApplicationController
           amount: product.price_cents,
           currency: 'cad',
           quantity: 1
+        },
+        {
+          name: 'PST',
+          description: 'Manitoba Provincial Sales Tax',
+          amount: (product.price_cents * 7 / 100.0).round.to_i,
+          currency: 'cad',
+          quantity: 1
+        },
+        {
+          name: 'GST',
+          description: 'Federal Goods and Services Tax',
+          amount: (product.price_cents * 5 / 100.0).round.to_i,
+          currency: 'cad',
+          quantity: 1
         }
       ],
       success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
