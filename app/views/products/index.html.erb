@@ -7,4 +7,5 @@
   <% end %>
   <p>Price: <%= number_to_currency product.price_cents / 100.0 %></p>
   <p><%= product.description %></p>
+  <%= button_to 'buy now', checkout_create_path, method: :post, params: { id: product.id }, remote: true %>
 <% end %>
