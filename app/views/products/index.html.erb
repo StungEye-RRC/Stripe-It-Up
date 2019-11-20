@@ -2,7 +2,9 @@
 
 <% @products.each do |product| %>
   <h3><%= product.name %></h3>
+  <% if product.image.present? %>
+    <p><%= image_tag product.image.variant(resize_to_limit: [100, 100]).processed  %></p>
+  <% end %>
   <p>Price: <%= number_to_currency product.price_cents / 100.0 %></p>
   <p><%= product.description %></p>
-  <p><%= image_tag product.image.variant(resize_to_limit: [100, 100]).processed  %></p>
 <% end %>
