@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <p>You have visited this page <%= pluralize @visit_count, 'time' %>.</p>
     <%= yield %>
   </body>
 </html>
